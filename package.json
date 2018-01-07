@@ -1,0 +1,24 @@
+{
+    "name": "wdio-json-tree-reporter",
+    "version": "1.0.1",
+    "description": "A wdio reporter in json format with tests as a tree instead of flat",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/bennieswart/wdio-json-tree-reporter"
+    },
+    "keywords": [
+        "webdriverio",
+        "wdio",
+        "reporter",
+        "json",
+        "webdriver"
+    ],
+    "author": "Bennie Swart <bennieswart@gmail.com>",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/bennieswart/wdio-json-tree-reporter/issues"
+    },
+    "homepage": "https://github.com/bennieswart/wdio-json-tree-reporter#readme",
+    "dependencies": {
+    }
+}
