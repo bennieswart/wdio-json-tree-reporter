@@ -1,6 +1,6 @@
 {
     "name": "wdio-json-tree-reporter",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "description": "A wdio reporter in json format with tests as a tree instead of flat",
     "repository": {
         "type": "git",

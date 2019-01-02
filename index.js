@@ -20,7 +20,7 @@ class JsonTreeReporter extends events.EventEmitter {
                 runners[cid].sessionID = stats.runners[cid].sessionID;
                 delete runners[cid].suites;
             });
-            
+
             let objs = {};
             function getobjs(obj) {
                 ['suites', 'tests'].forEach(field =>
@@ -92,7 +92,10 @@ class JsonTreeReporter extends events.EventEmitter {
         });
 
         this.on('suite:end', suite => {
-            suites[suite.cid].splice(-1, 1);
+            let idx = suites[suite.cid].findIndex(s => s.uid === suite.uid);
+            if (idx >= 0) {
+                suites[suite.cid].splice(idx, 1);
+            }
         });
 
         let testend = test => suites[test.cid].slice(-1)[0].tests.push({
