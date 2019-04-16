@@ -1,4 +1,5 @@
 const events = require('events');
+const fs = require('fs');
 
 Object.values = Object.values || (obj => Object.keys(obj).map(k => obj[k]));
 
@@ -66,10 +67,14 @@ class JsonTreeReporter extends events.EventEmitter {
                 runners: runners,
             };
 
-            process.stdout._handle.setBlocking(true);
-            process.stdout.write(JSON.stringify(results));
-            process.stdout.write('\n\n');
-            process.stdout._handle.setBlocking(false);
+            if (options.logFile) {
+                fs.writeFileSync(options.logFile, JSON.stringify(results));
+            } else {
+                process.stdout._handle.setBlocking(true);
+                process.stdout.write(JSON.stringify(results));
+                process.stdout.write('\n\n');
+                process.stdout._handle.setBlocking(false);
+            }
         });
 
         this.on('runner:start', runner => {
