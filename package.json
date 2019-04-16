@@ -2,9 +2,13 @@
     "name": "wdio-json-tree-reporter",
     "version": "1.0.2",
     "description": "A wdio reporter in json format with tests as a tree instead of flat",
+    "main": "lib/index.js",
     "repository": {
         "type": "git",
         "url": "https://github.com/bennieswart/wdio-json-tree-reporter"
+    },
+    "scripts": {
+        "build": "babel src -d lib"
     },
     "keywords": [
         "webdriverio",
@@ -19,6 +23,9 @@
         "url": "https://github.com/bennieswart/wdio-json-tree-reporter/issues"
     },
     "homepage": "https://github.com/bennieswart/wdio-json-tree-reporter#readme",
-    "dependencies": {
+    "devDependencies": {
+        "@babel/cli": "^7.4.3",
+        "@babel/core": "^7.4.3",
+        "@babel/preset-env": "^7.4.3"
     }
 }
