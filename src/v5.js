@@ -24,7 +24,10 @@ const stateRemap = {
 
 class JsonTreeReporter extends WDIOReporter {
     constructor (options = {}) {
-        options = Object.assign(options, { outputFilePrefix: path.join(process.cwd(), 'json-tree-reports') + '/' });
+        options = Object.assign(options, {
+            outputFilePrefix: path.join(process.cwd(), 'json-tree-reports') + '/',
+            reportPassedHooks: false,
+        });
         super(options);
 
         Object.defineProperty(this, 'isSynchronised', { value: false, writable: true });
@@ -94,6 +97,21 @@ class JsonTreeReporter extends WDIOReporter {
             state: stateRemap[test.state] || test.state,
             error: test.error,
         });
+    }
+
+    onHookEnd(hook) {
+        if (this.suites.length > 1 && (this.options.reportPassedHooks || (stateRemap[hook.state] || hook.state) === 'fail')) {
+            this.suites.slice(-1)[0].tests.push({
+                type: 'hook',
+                uid: hook.uid,
+                title: hook.title,
+                start: hook.start,
+                end: hook.end,
+                duration: hook._duration,
+                state: stateRemap[hook.state] || hook.state,
+                error: hook.error,
+            });
+        }
     }
 };
 
