@@ -86,7 +86,7 @@ class JsonTreeReporter extends WDIOReporter {
         }
     }
 
-    onTestEnd(test) {
+    _onTestEnd(test) {
         this.suites.slice(-1)[0].tests.push({
             type: 'test',
             uid: test.uid,
@@ -97,6 +97,18 @@ class JsonTreeReporter extends WDIOReporter {
             state: stateRemap[test.state] || test.state,
             error: test.error,
         });
+    }
+
+    onTestPass() {
+        this._onTestEnd(...arguments);
+    }
+
+    onTestFail() {
+        this._onTestEnd(...arguments);
+    }
+
+    onTestSkip() {
+        this._onTestEnd(...arguments);
     }
 
     onHookEnd(hook) {
