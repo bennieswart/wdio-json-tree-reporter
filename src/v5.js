@@ -57,7 +57,7 @@ class JsonTreeReporter extends WDIOReporter {
 
         let filename = this.options.outputFilePrefix + output.cid +
             (typeof output.retry === 'number' && output.retry ? '-' + output.retry : '') + '.json';
-        await P(mkdirp, path.dirname(filename));
+        await mkdirp(path.dirname(filename));
         await P(fs.writeFile, filename, JSON.stringify(output));
         await P(fs.writeFile, this.options.outputFilePrefix + 'config.json', JSON.stringify(runner.config));
         this.isSynchronised = true;
