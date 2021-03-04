@@ -51,7 +51,7 @@ class JsonTreeReporter extends WDIOReporter {
             files: runner.specs,
             state: stateRollup(this.suites[0].suites.map(s => s.state)),
         };
-        if (output.state === 'fail' && (output.retry || 0) < (runner.config.specFileRetries || 0)) {
+        if (output.state === 'fail' && runner.retries > 0) {
             output.state = 'retry';
         }
 
