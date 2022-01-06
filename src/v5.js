@@ -95,6 +95,7 @@ class JsonTreeReporter extends WDIOReporter {
             end: test.end,
             duration: test._duration,
             state: stateRemap[test.state] || test.state,
+            errors: test.errors,
             error: test.error,
         });
     }
@@ -121,6 +122,7 @@ class JsonTreeReporter extends WDIOReporter {
                 end: hook.end,
                 duration: hook._duration,
                 state: stateRemap[hook.state] || hook.state,
+                errors: hook.errors,
                 error: hook.error,
             });
         }

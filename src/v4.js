@@ -43,6 +43,7 @@ class JsonTreeReporter extends events.EventEmitter {
                     obj.end = objs[obj.uid].end;
                     obj.duration = objs[obj.uid]._duration;
                     obj.state = objs[obj.uid].state === 'pending' ? 'skip' : objs[obj.uid].state;
+                    obj.errors = objs[obj.uid].errors;
                     obj.error = objs[obj.uid].error;
                 }
                 [].concat(...['suites', 'tests'].map(f => obj[f] || [])).forEach(populate);
